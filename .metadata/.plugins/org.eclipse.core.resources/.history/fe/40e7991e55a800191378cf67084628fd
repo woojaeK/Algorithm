@@ -1,0 +1,27 @@
+package array1;
+
+import java.util.Scanner;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int zero= 0, n = 1, sum = 0, x = 0;
+		int T;
+		Scanner sc = new Scanner(System.in);
+		T=sc.nextInt();
+		if(T != 1) {
+			while(true) {
+				T = T/2;
+				n++;
+				if(T == 1)
+					break;
+			}
+			for(int i = 0; i < n; i++) {
+				x = 2^n;
+			}
+				
+		}
+		System.out.println(x);
+	}
+}

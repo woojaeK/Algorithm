@@ -1,0 +1,23 @@
+package array1;
+
+import java.util.Scanner;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String input; 
+		String a = "0";
+		String b = "";
+		Scanner sc = new Scanner(System.in);
+		input = sc.nextLine();
+		
+		for(int i = 0; i<input.length(); i++) {
+			b = b + a;
+		}
+		Syetem.out.println(b);
+		for(int i = 0; i<input.length(); i++) {
+			
+		}
+	}
+}

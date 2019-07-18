@@ -1,0 +1,15 @@
+package array1;
+
+import java.util.Scanner;
+import java.io.FileInputStream;
+
+public class Test{	
+	public static void main(String args[]) throws Exception	{
+		System.setIn(new FileInputStream("res/input_d1_1289.txt"));// 제출시 주석 or 삭제
+
+		Scanner sc = new Scanner(System.in);
+		int T=sc.nextInt();
+		
+		System.out.println("T="+T);
+	}
+}

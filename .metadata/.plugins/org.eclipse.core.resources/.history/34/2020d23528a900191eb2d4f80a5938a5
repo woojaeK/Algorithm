@@ -1,0 +1,50 @@
+package array2;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Solution_D3_1209_sum_서울9반_김우재{//제출시 class 명은 반드시 Solution
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T;
+		
+		for(int t = 1; t <= 10; t++) {
+			
+			T=sc.nextInt();
+			
+			int[][] x = new int[100][100];
+			int[] sum = new int[202];
+			int number = 0;
+			
+			for(int i = 0; i<x.length; i++) {	
+				for(int j = 0; j<x.length; j++) {
+					number = sc.nextInt();
+					x[i][j] = number;
+				}
+			}
+			for(int i = 0; i<x.length; i++) {	
+				for(int j = 0; j<x.length; j++) {
+					if(i<100) {
+					sum[i] = sum[i] + x[i][j];
+					} else {
+					sum[i+99] = sum[i+99] + x[j][i];
+					}
+				}
+				sum[200] = sum[200] + x[i][99-i];
+				sum[201] = sum[201] + x[99-i][i];			
+			}
+			
+			int max = -1;
+			for(int i= 0; i < sum.length; i++) {
+				if(max < sum[i]) {
+					max = sum[i];
+				}
+			}
+			
+			System.out.println("#" + t + " " + max);
+		}
+	}
+}
+
+

@@ -1,0 +1,23 @@
+package array1;//정답제출시 package 삭제
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.FileInputStream;
+
+public class Solution_D1_1204_최빈수구하기_서울9반_김우재{//제출시 class 명은 반드시 Solution
+	
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T,check;
+		T=sc.nextInt();
+		check = sc.nextInt();
+		int[] num = new int[1000];
+		
+		for(int i = 0; i < T; i++) 
+		{
+			num[i] = sc.nextInt();
+		}
+		
+		System.out.println(Arrays.toString(num));
+	}
+}
