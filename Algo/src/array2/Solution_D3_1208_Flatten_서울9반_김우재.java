@@ -18,6 +18,7 @@ public class Solution_D3_1208_Flatten_서울9반_김우재{//제출시 class 명
 			for(int i = 0; i < box.length; i++) {
 				box[i] = sc.nextInt();
 			}
+			
 			Arrays.sort(box);
 
 			for(int i=0; i < t; i++) {
@@ -27,6 +28,7 @@ public class Solution_D3_1208_Flatten_서울9반_김우재{//제출시 class 명
 					Arrays.sort(box);
 				}
 			}
+			
 			System.out.println();
 			System.out.println("#" + tc + " " + (box[99]-box[0]));
 		}
