@@ -1,6 +1,6 @@
 package array2;
 
-public class BinarySearch2 {
+public class BinarySearch2_재귀_서울9반_김우재 {
 	
 	public static int binarysearch2 (int a[], int low, int high, int key) {
 		if(low > high) {

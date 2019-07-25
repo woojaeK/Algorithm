@@ -1,6 +1,6 @@
 package array2;
 
-public class BinarySearch {
+public class BinarySearch1_반복_서울9반_김우재 {
 
 	static int binarysearch(int[] a, int key) {
 		
