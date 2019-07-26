@@ -38,7 +38,7 @@ public class Solution_D4_1211_Ladder2_서울9반_김우재 {
 			int sum = 0;
 			int max = -1;
 			int O = 0;
-			for (int i = 0; i < start.length; i++) {
+			label: for (int i = 0; i < start.length; i++) {
 				ny = start[i];
 
 				while(true) {
@@ -48,10 +48,10 @@ public class Solution_D4_1211_Ladder2_서울9반_김우재 {
 					}
 					
 					if(nx == 99) {
-						break;
+						break label;
 					}
 					
-					if (ny + 1 < 100 && ny - 1 >= 0) {
+					if ( ny - 1 >= 0 && ny + 1 < 100){
 						if (data[nx][ny + 1] == 1) {
 							data[nx][ny]++;
 							ny++;
@@ -84,7 +84,7 @@ public class Solution_D4_1211_Ladder2_서울9반_김우재 {
 						}
 					}
 				}
-*/
+
 			}
 			System.out.println("#" + k +" " + O);
 		}
