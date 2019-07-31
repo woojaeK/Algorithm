@@ -1,0 +1,20 @@
+class  Parent {
+    int k=5;
+    void show() {System.out.println(1); } 
+    void down() {System.out.println(2); }
+}
+class Child extends  Parent {
+    int  k=10; 
+    void show() { System.out.println(3);  } 
+    void up()  {System.out.println(4);  }
+}
+public class Test {
+     public static void main(String args[]) {
+          Parent  a = new  Child();
+          a.show();                          
+          System.out.println(a.k) ;      
+          a.down();                         
+          a.up();                             
+     } 
+}
+

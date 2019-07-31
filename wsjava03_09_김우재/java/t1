@@ -1,0 +1,24 @@
+package com.basic;
+
+class One{
+	One(int x){
+		System.out.println(x);
+	}
+	
+	void go() {
+		System.out.println("111");
+	}
+}
+class Two extends One{
+	void go() {
+		System.out.println("222");
+	}
+}
+public class Test10 {	
+	public static void main(String[] args) {
+		Two t = new Two();
+		t.go();
+		
+	}
+
+}

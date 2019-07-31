@@ -1,0 +1,16 @@
+class  Super {
+     void go() {   System.out.print ("111");  } 
+}
+class Sub extends  Super {
+     void go() {  System.out.print ("222");  } 
+}
+
+ Super  a = new  Super();
+ a.go(); 
+ 
+ Sub b = new Sub();
+ b.go();
+ 
+ Super c = new Sub();
+ c.go();
+ 
