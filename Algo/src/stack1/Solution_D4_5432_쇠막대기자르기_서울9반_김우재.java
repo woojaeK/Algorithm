@@ -18,17 +18,16 @@ public class Solution_D4_5432_쇠막대기자르기_서울9반_김우재 {
 			int sum = 0;
 			Stack<Character> stack = new Stack<>();
 			for (int i = 0; i < s.length(); i++) {
-				if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '{' || s.charAt(i) == '<') {
+				if (s.charAt(i) == '(') {
 					stack.push(s.charAt(i));
 				} else {
 					char n = s.charAt(i);
 					char sn = stack.peek(); //현재
 					if(sn == '(' && n == ')') {
+						stack.pop();
 						if(i > 0 && s.charAt(i-1) != ')') {
-							stack.pop();
 							sum += stack.size();
 						} else {
-							stack.pop();
 							sum += 1;
 						} 
 					}  
