@@ -8,14 +8,40 @@ public class Solution_탑_서울9반_김우재 {
 		Scanner sc = new Scanner(System.in);
 
 		int N = sc.nextInt();
-		Stack<Integer> stack = new Stack<>();
-		int max = 0;
-		int curr = 0;
-		int size = 0;
-		stack.push(sc.nextInt());
-		for (int i = 0; i < N; i++) {
-			int a = sc.nextInt();
-			stack.push(a);
+		Stack<Integer> value = new Stack<>();
+		Stack<Integer> index = new Stack<>();
+
+		int a = sc.nextInt();
+		value.push(a);
+		index.push(0);
+		System.out.print("0 ");
+		for (int i = 2; i <= N; i++) {
+			
+			int num = sc.nextInt();
+			
+			while (!value.isEmpty()) {
+				if (num < value.peek()) {
+					if(i ==N) {
+						System.out.print(index.peek());
+						break;
+					}
+					else {
+						System.out.print(index.peek()+ " ");
+					break;}
+					
+				}
+				
+				value.pop();
+				index.pop();
+			}	
+			if(value.isEmpty()) {
+				if(i==N) System.out.print("0");
+				else System.out.print("0 ");
+			}
+			
+			value.push(num);
+			index.push(i);
+				
 			
 		}
 	}
