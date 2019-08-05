@@ -3,7 +3,7 @@ package stack2;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Solution_탑_서울9반_김우재 {
+public class Main_정올_2493_탑_서울9반_김우재 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 

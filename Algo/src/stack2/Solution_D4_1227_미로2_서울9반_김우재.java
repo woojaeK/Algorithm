@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution_D4_1227_서울9반_김우재 {
+public class Solution_D4_1227_미로2_서울9반_김우재 {
 
 	public static int[] di = { 0, 0, -1, 1 };
 	public static int[] dj = { -1, 1, 0, 0 };
