@@ -12,7 +12,7 @@ public class Solution_D2_1288_새로운불면증치료법 {
 
 		int T = sc.nextInt();
 
-		for (int tc = 1; tc <= 1; tc++) {
+		for (int tc = 1; tc <= T; tc++) {
 			int N = sc.nextInt();
 			String[] a = {"0","0","0","0","0","0","0","0","0"};
 			int n = N;
@@ -24,7 +24,7 @@ public class Solution_D2_1288_새로운불면증치료법 {
 					if (n % 10 == i+1) a[i] ="a";
 				}
 				k++;
-				if(!Arrays.asList(a).contains("0")) break label; 
+				if(!Arrays.asList(a).contains("0") == false) break label; 
 			}
 			System.out.println("#" + tc + " " + n);
 		}
