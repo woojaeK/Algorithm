@@ -1,6 +1,7 @@
 package D2;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -12,21 +13,49 @@ public class Solution_D2_1288_새로운불면증치료법 {
 
 		int T = sc.nextInt();
 
-		for (int tc = 1; tc <= T; tc++) {
+		for (int tc = 1; tc <= 1; tc++) {
 			int N = sc.nextInt();
-			String[] a = {"0","0","0","0","0","0","0","0","0"};
+			ArrayList<Integer> number = new ArrayList<>();
 			int n = N;
-			int k = 1;
-			
-			label : while (true) {
-				n = n * k;
-				for (int i = 0; i < a.length; i++) {
-					if (n % 10 == i+1) a[i] ="a";
+			int m = N;
+			int k = 0;
+			int sum = 0;
+			int l = 1;
+			int[] a = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+			while (true) {
+				n = n * l;
+				m = m * l;
+				while (m > 0) {
+					m = m / 10;
+					k++;
 				}
-				k++;
-				if(!Arrays.asList(a).contains("0") == false) break label; 
+				System.out.println(n+ "   " + m);
+				for (int i = 0; i < k; i++) {
+					for (int j = 0; j < a.length; j++) {
+						if (n % 10 == a[j]) {
+							a[j] = 100;
+							n = n / 10;
+						}
+					}
+				}
+				
+				System.out.println(Arrays.toString(a));
+				for (int i = 0; i < a.length; i++) {
+					sum += a[i];
+				}
+				
+				System.out.println(sum);
+				if (sum == 1000) {
+					System.out.println("#" + tc + " " + n*l); 
+					break;
+				}
+				sum =0;
+				n = N;
+				m = N;
+				l++;
 			}
-			System.out.println("#" + tc + " " + n);
+			
 		}
 	}
 }
