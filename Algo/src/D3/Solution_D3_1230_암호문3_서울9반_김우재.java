@@ -29,6 +29,7 @@ public class Solution_D3_1230_암호문3_서울9반_김우재 {
 			StringTokenizer st2 = new StringTokenizer(br.readLine());
 			int x = 0;
 			int y = 0;
+			
 			for (int i = 0; i < CL; i++) {
 				String s = st2.nextToken();
 				switch (s) {
