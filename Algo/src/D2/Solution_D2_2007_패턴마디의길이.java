@@ -16,7 +16,7 @@ public class Solution_D2_2007_패턴마디의길이 {
 			StringBuilder sb = new StringBuilder();
 			StringBuilder sb2 = new StringBuilder();
 			ArrayList<Integer> dab = new ArrayList<>();
-			int jinjjadab = 0;
+			int jdab = 0;
 			for (int j = 1; j < 10; j++) {
 				if (S.charAt(0) == S.charAt(j))
 					dab.add(j);
@@ -26,10 +26,15 @@ public class Solution_D2_2007_패턴마디의길이 {
 					sb.append(S.charAt(j));
 					sb2.append(S.charAt(j + dab.get(i)));
 				}
-				System.out.println(sb+""+sb2);
+				if(sb.toString().equals(sb2.toString())) {
+					jdab = sb.length();  break;
+				}else {
+					sb.setLength(0);
+					sb2.setLength(0);
+				}
 			}
 
-			System.out.println("#" + tc + " " + jinjjadab);
+			System.out.println("#" + tc + " " + S.substring(0,jdab));
 		}
 	}
 }

@@ -13,49 +13,48 @@ public class Solution_D2_1288_새로운불면증치료법 {
 
 		int T = sc.nextInt();
 
-		for (int tc = 1; tc <= 1; tc++) {
+		for (int tc = 1; tc <= 2; tc++) {
 			int N = sc.nextInt();
-			ArrayList<Integer> number = new ArrayList<>();
+			char[] a = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+			int[] x = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			String s = "";
 			int n = N;
-			int m = N;
-			int k = 0;
+			ArrayList<Character> ch = new ArrayList<>();
 			int sum = 0;
-			int l = 1;
-			int[] a = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
+			int k =1;
+			int m =N;
+			int cnt =0;
 			while (true) {
-				n = n * l;
-				m = m * l;
-				while (m > 0) {
-					m = m / 10;
-					k++;
+				
+				while(m>0) {
+					m =m/10;
+					cnt++;
 				}
-				System.out.println(n+ "   " + m);
-				for (int i = 0; i < k; i++) {
+				for (int i = 0; i < cnt; i++) {
+					s = n + "";
+					ch.add(s.charAt(i));
 					for (int j = 0; j < a.length; j++) {
-						if (n % 10 == a[j]) {
-							a[j] = 100;
-							n = n / 10;
+						if (ch.get(i).equals(a[j])) {
+							x[j] = 100;
+							break;
 						}
 					}
+					
 				}
-				
-				System.out.println(Arrays.toString(a));
-				for (int i = 0; i < a.length; i++) {
-					sum += a[i];
-				}
-				
-				System.out.println(sum);
-				if (sum == 1000) {
-					System.out.println("#" + tc + " " + n*l); 
-					break;
-				}
-				sum =0;
-				n = N;
-				m = N;
-				l++;
+				System.out.println(Arrays.toString(x));
+				s = "";
+				ch.clear();
+				for (int j = 0; j < x.length; j++) sum += x[j];
+				if (sum == 1000) break;
+				sum = 0;
+				k++;
+				n=N;
+				m=N;
+				n = n * k;
+				m = m * k;
+				cnt=0;
 			}
-			
+			System.out.println(n);
 		}
 	}
 }
