@@ -27,11 +27,11 @@ public class Dfs {
 		}
 
 		// for(int[] a : graph) System.out.println(Arrays.toString(a));
-		//dfs(0);
+		dfs(0);
 		//System.out.println();
 		
-		visit = new boolean[V];
-		dfsr(0);
+		//visit = new boolean[V];
+		//dfsr(0);
 	}
 	public static void dfsr(int node) {
 		visit[node] = true;

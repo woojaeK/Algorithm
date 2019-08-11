@@ -37,6 +37,25 @@ public class Bfs {
 		// dfsr(0);
 	}
 
+	// 외우자
+	public static void bfs(int node) {
+		visit = new boolean[V];
+		queue.offer(node);
+		while (!queue.isEmpty()) {
+			int curr = queue.poll();
+			if (visit[curr] == false) {
+				visit[curr] = true;
+				System.out.println(curr + " ");
+
+				for (int next = 0; next < V; next++) {// 0 1 2 3 4 5 6
+					if (visit[next] == false && graph[curr][next] == 1) {
+						queue.offer(next);
+					}
+				}
+			}
+		}
+	}
+	
 	public static void dfsr(int node) {
 		visit[node] = true;
 		System.out.println(node + " ");
@@ -68,25 +87,7 @@ public class Bfs {
 			}
 			System.out.println("level : "+ cnt++); // 해당 레벨의 갯수 
 		}
-
 	}
-
-	// 외우자
-	public static void bfs(int node) {
-		visit = new boolean[V];
-		queue.offer(node);
-		while (!queue.isEmpty()) {
-			int curr = queue.poll();
-			if (visit[curr] == false) {
-				visit[curr] = true;
-				System.out.println(curr + " ");
-
-				for (int next = 0; next < V; next++) {// 0 1 2 3 4 5 6
-					if (visit[next] == false && graph[curr][next] == 1) {
-						queue.offer(next);
-					}
-				}
-			}
-		}
-	}
+ 
+	
 }
