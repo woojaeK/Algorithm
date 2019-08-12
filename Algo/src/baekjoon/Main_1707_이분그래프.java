@@ -23,7 +23,9 @@ public class Main_1707_이분그래프 {
 			V = Integer.parseInt(st.nextToken());
 			E = Integer.parseInt(st.nextToken());
 			queue = new LinkedList<Integer>();
-			graph = new ArrayList<ArrayList<Integer>>();
+			for (int i = 0; i <= V; i++) {
+				graph.add(new ArrayList<>());
+			}
 			int x = 0, y = 0;
 			for (int i = 1; i <= E; i++) {
 				st = new StringTokenizer(br.readLine());
@@ -33,15 +35,8 @@ public class Main_1707_이분그래프 {
 				graph.get(y).add(x);
 			}
 			System.out.println(graph);
-			int start = 0;
-			label: for (int i = 0; i < graph.size(); i++) {
-				for (int j = 0; j < graph.size(); j++) {
-					start = i;
-					break label;
-				}
-			}
-			
-			dfs(start);
+	
+			dfs(1);
 			
 			if (visit[0] == true)
 				System.out.println("N0");
