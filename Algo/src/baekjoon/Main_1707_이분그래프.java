@@ -3,64 +3,65 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_1707_이분그래프 {
-	public static int V;
-	public static int E;
-	public static boolean[] visit;
-	public static ArrayList<ArrayList<Integer>> graph;
-	public static Queue<Integer> queue;
+	public static ArrayList<Integer>[] graph = (ArrayList<Integer>[]) new ArrayList[20001];
+	public static int[] color = new int[20001];
+
+	public static void dfs(int node, int c) {
+		color[node] = c;
+		for (int i = 0; i < graph[node].size(); i++) {
+			int tmp = graph[node].get(i);
+			if (color[tmp] == 0) {
+				dfs(tmp, 3 - c);
+			}
+		}
+	}
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+
 		int k = Integer.parseInt(br.readLine());
+
 		for (int tc = 1; tc <= k; tc++) {
 			st = new StringTokenizer(br.readLine());
-			V = Integer.parseInt(st.nextToken());
-			E = Integer.parseInt(st.nextToken());
-			queue = new LinkedList<Integer>();
-			for (int i = 0; i <= V; i++) {
-				graph.add(new ArrayList<>());
+			int V = Integer.parseInt(st.nextToken());
+			int E = Integer.parseInt(st.nextToken());
+
+			for (int i = 1; i <= V; i++) {
+				graph[i] = new ArrayList<Integer>();
+				color[i] = 0;
 			}
-			int x = 0, y = 0;
-			for (int i = 1; i <= E; i++) {
+
+			for (int i = 0; i < E; i++) {
+				int x, y;
 				st = new StringTokenizer(br.readLine());
 				x = Integer.parseInt(st.nextToken());
 				y = Integer.parseInt(st.nextToken());
-				graph.get(x).add(y);
-				graph.get(y).add(x);
+				graph[x].add(y);
+				graph[y].add(x);
 			}
-			System.out.println(graph);
-	
-			dfs(1);
-			
-			if (visit[0] == true)
-				System.out.println("N0");
-			else
-				System.out.println("YES");
+
+			for (int i = 1; i <= V; i++) {
+				if (color[i] == 0)
+					dfs(i, 1);
+			}
+
+			boolean check = true;
+			for (int i = 1; i <= V; i++) {
+				for (int j = 0; j < graph[i].size(); j++) {
+					int f = graph[i].get(j);
+					if (color[i] == color[f]) {
+						check = false;
+					}
+				}
+			}
+			System.out.println(check ? "YES" : "NO");
 		}
 	}
 
-	public static void dfs(int node) {
-		visit = new boolean[V + 1];
-		queue.offer(node);
-		while (!queue.isEmpty()) {
-			int curr = queue.poll();
-			if (visit[curr] == false) {
-				visit[curr] = true;
-				for (int i = 1; i <= V; i++) {
-					if (visit[i] == false && graph.get(curr).get(i) == 1) {
-						queue.offer(i);
-					}
-				}
-			} else {
-				visit[0] = true;
-				return;
-			}
-		}
-	}
 }
