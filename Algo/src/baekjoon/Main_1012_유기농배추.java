@@ -10,72 +10,56 @@ import java.util.StringTokenizer;
 
 public class Main_1012_유기농배추 {
 
-	public static pair[] edge;
-	public static int N;
 	public static int[][] graph;
-	public static boolean[] visit;
-	public static Queue<Integer> queue;
+	public static int N;
+	public static int M;
 	public static int cnt;
+	public static int[] di = { -1, 0, 1, 0 };
+	public static int[] dj = { 0, 1, 0, -1 };
+
+	public static void bfs(int xnode, int ynode) {
+		graph[xnode][ynode] =0;
+		for (int i = 0; i < di.length; i++) {
+			int x = xnode + di[i];
+			int y = ynode + dj[i];
+			if (x >= 0 && y >= 0 && x < M && y < N && graph[x][y] == 1) {// && visit[x][y] == false) {
+				bfs(x, y);
+			}
+		}
+	}
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
 		int T = Integer.parseInt(br.readLine());
-		queue = new LinkedList<Integer>();
 
 		for (int tc = 1; tc <= T; tc++) {
 			cnt = 0;
 
-			// 현재점이랑 이동점이랑 더햇을떄 2이면 ? 여튼 다시풀기
 			st = new StringTokenizer(br.readLine());
-			int M = Integer.parseInt(st.nextToken());
-			int N = Integer.parseInt(st.nextToken());
+			M = Integer.parseInt(st.nextToken());
+			N = Integer.parseInt(st.nextToken());
 			int K = Integer.parseInt(st.nextToken());
 
-			visit = new boolean[2500];
-			
-			edge = new pa/\
-					[K];
-			for (int i = 0; i < N; i++) {
+			graph = new int[M][N];
+
+			for (int i = 0; i < K; i++) {
 				st = new StringTokenizer(br.readLine());
 				int from = Integer.parseInt(st.nextToken());
 				int to = Integer.parseInt(st.nextToken());
-				graph[x][y] = 1;
-				graph[y][x] = 1;
+				graph[from][to] = 1;
 			}
 
-			for (int i = 0; i < N; i++) {
-				if (visit[i] == false)
-					bfs(i);
-			}
-
-			System.out.println(cnt);
-		}
-	}
-
-	public static class pair{
-		int from;
-		int to;
-		
-		public pair(int from, int to) {
-			this.from  = from;
-			this.to = to;
-		}
-	}
-	public static void bfs(int node) {
-		queue.offer(node);
-		while (!queue.isEmpty()) {
-			int curr = queue.poll();
-			if (visit[curr] == false) {
-				
-				for (int next = 0; next < N; next++) {
-					if(visit[next]==false && graph[curr][next]==1) {
-						visit[curr] = true;// 자기자신도 방문할수 있게 고려 다시생각
-						queue.offer(next);
+			for (int i = 0; i < M; i++) {
+				for (int j = 0; j < N; j++) {
+					if(graph[i][j] ==1) {
+						bfs(i, j);
+						cnt++;
 					}
 				}
 			}
+			System.out.println(cnt);
 		}
 	}
 }
