@@ -9,25 +9,19 @@ import java.util.StringTokenizer;
 
 public class Solution_D3_1244_최대상금_서울9반_김우재 {
 	public static int[] ss;
-	public static int n, r, cnt, a[], v[], d[] = { 0, 1 };
+	public static int n, r, a[], v[], d[] = { 0, 1 };
 	public static void powerset(int count) {// simple dfs example
 		if (count == r) {
-			cnt++;
-			System.out.print(Arrays.toString(a));
 			for (int i = 0; i < r; i++) {
 				if (a[i] == 1) {
-					System.out.print(c[i] + " ");
 				}
 			}
-			System.out.println();
 			return;
 		}
 		for (int i = 0; i < n; i++) {
 			a[count] = d[i];
 			powerset(count + 1);
-
 		}
-
 	}
 	
 	public static void main(String[] args) throws Exception {
