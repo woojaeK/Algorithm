@@ -1,4 +1,4 @@
-package array2;
+package stack2;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class PemComb {
 			System.out.println(Arrays.toString(a));
 			return;
 		}
-		for (int i = 1; i < n; i++) {//start를 쓰면 조합 start 안쓰면 순열 
+		for (int i = 1; i < n; i++) {//start를 쓰면 조합 start 안쓰면 순열for (int i = start; i < n; i++) 
 			if (v[i] == 0) {
 				v[i] = 1;
 				a[count] = i;
@@ -33,5 +33,4 @@ public class PemComb {
 		System.out.println(cnt);
 		sc.close();
 	}
-
 }
