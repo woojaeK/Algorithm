@@ -8,17 +8,20 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Solution_1233_사칙연산유효성검사_서울9반_김우재 {
+public class Solution_D4_1233_사칙연산유효성검사_서울9반_김우재 {
 
 	public static Stack<String> stack = new Stack<String>();
 	public static Queue<String> queue = new LinkedList<String>();
 	public static String[] s;
+	public static int N;
 	public static String[] ccc = { "+", "-", "*", "/" };
 
-	public static void postorder(int node) {
-		postorder(2 * node);
-		postorder(2 * node + 1);
+	public static void preorder(int node) {
+		if(node<=N && s[node] != "") {
+		preorder(2 * node);
 		queue.offer(s[node]);
+		preorder(2 * node + 1);
+		}
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -27,42 +30,34 @@ public class Solution_1233_사칙연산유효성검사_서울9반_김우재 {
 		StringTokenizer st;
 
 		for (int tc = 1; tc <= 10; tc++) {
-			int N = Integer.parseInt(br.readLine());
+			queue.clear();
+			N = Integer.parseInt(br.readLine());
 
 			s = new String[N + 1];
-			for (int i = 1; i <= s.length; i++) {
+
+			for (int i = 1; i < s.length; i++) {
 				st = new StringTokenizer(br.readLine());
 				st.nextToken();
 				s[i] = st.nextToken();
-				System.out.println(i+"     ");
 			}
-
-			postorder(1);
-			int dab = 0;
-			String a1 = queue.peek();
-			if (a1.equals(ccc[0]) || a1.equals(ccc[1]) || a1.equals(ccc[2]) || a1.equals(ccc[3])) {
-				dab = 1;
-			} else {
-				while (!queue.isEmpty()) {
-
-					if (a1.equals(ccc[0]) || a1.equals(ccc[1]) || a1.equals(ccc[2]) || a1.equals(ccc[3])) {
-						if (stack.size() == 1) {
-							dab = 1;
-							break;
-						}
-						queue.poll();
-						stack.pop();
-						stack.pop();
-						stack.add("1");
-					} else {
-						queue.poll();
-						queue.poll();
-						stack.add("1");
-						stack.add("1");
+			preorder(1);
+			int dab =1;
+			String q;
+			for (int i = 1; i <= queue.size(); i++) {
+				q = queue.poll();
+				if(i%2 == 1) {
+					if(q.equals(ccc[0])||q.equals(ccc[1])||q.equals(ccc[2])||q.equals(ccc[3])) {
+						dab =0; break;
+					}
+				}
+				else {
+					if(q.equals(ccc[0])||q.equals(ccc[1])||q.equals(ccc[2])||q.equals(ccc[3])) {
+					}else {
+						dab =0; break;
 					}
 				}
 			}
-			System.out.println(dab);
+			System.out.println("#" + tc +" "+dab);
 		}
 	}
 }

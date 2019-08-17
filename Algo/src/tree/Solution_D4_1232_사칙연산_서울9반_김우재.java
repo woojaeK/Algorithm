@@ -4,36 +4,24 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.StringTokenizer;
-
-class Node1 {
-	String data;
-	Node left, right;
-
-	public Node makeTree( String data, Node left, Node right) {
-		Node node = new Node();
-		node.data = data;
-		node.left = left;
-		node.right = right;
-		return node;
-	}
-}
-
-public class Solution_D4_1232_사칙연산_서울9반_김우재 {
-
+ 
+public class Solution_D4_1232_사칙연산_서울9반_김우재{
+	public static ArrayList<String> al ;
+	public static String[] s;
+	public static int[] num1;
+	public static int[] num2;
 	public static int N;
-	public static ArrayList<Node1> node;
-	public static Queue<String> queue = new LinkedList<String>();
-	public static Stack<Integer> stack = new Stack<Integer>();
-
-	public void postorder(Node1 node) {
-		if (node != null) {
-			postorder(node.left);
-			postorder(node.right);
-			queue.add(node.data);
+	public static Stack<Double> stack = new Stack<Double>();
+	
+	public static void postorder(int i) {
+		if( i<= N && s[i] != null&&(2*i+1)<=N) {
+			if(num1[2*i] !=0)postorder(num1[2*i]);
+			if(num2[2*i+1] != 0)postorder(num2[2*i+1]);
+			al.add(s[i]);
 		}
 	}
 
@@ -42,44 +30,42 @@ public class Solution_D4_1232_사칙연산_서울9반_김우재 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
 
-		for (int tc = 1; tc <= 10; tc++) {
+		for(int tc = 1; tc<=1; tc++) {
 			N = Integer.parseInt(br.readLine());
-			for (int i = 1; i <= N; i++) {
+			s = new String[N+1];
+			al = new ArrayList<>();
+			num1 = new int[N+1];
+			num2 = new int[N+1];
+			for(int i=1; i<=N; i++) {
 				st = new StringTokenizer(br.readLine());
 				st.nextToken();
-				if(st.countTokens() == 1) {node.add(st.nextToken(),0,0);}
-				else if (st.countTokens() ==2){}
-				else {}
+				s[i] = st.nextToken();
+				if(st.hasMoreTokens()) num1[i] = Integer.parseInt(st.nextToken());
+				if(st.hasMoreTokens()) num2[i] = Integer.parseInt(st.nextToken());
 			}
 			postorder(1);
-			System.out.println(queue);
-			while (!queue.isEmpty()) {
-				String str = queue.poll();
-				if (str.equals(cal[0]) || str.equals(cal[1]) || str.equals(cal[2]) || str.equals(cal[3])) {
-					b = stack.pop();
-					a = stack.pop();
-					sum = 0;
-					switch (str.charAt(0)) {
-					case '+':
-						sum = a + b;
-						break;
-					case '-':
-						sum = a - b;
-						break;
-					case '*':
-						sum = a * b;
-						break;
-					case '/':
-						sum = a / b;
-						break;
+			System.out.println(al);
+			for(int i=0; i<al.size(); i++) {
+				String c = al.get(i);
+				if(c.equals("+") || c.equals("-") || c.equals("*") || c.equals("/")) {
+					double n2 = stack.pop();
+					double n1 = stack.pop();
+					double nn= 0.0;
+					switch(c) {
+					case "+": nn = n1+n2; break;
+					case "-": nn = n1-n2; break;
+					case "*": nn = n1*n2; break;
+					case "/": nn = n1/n2; break;
 					}
-					stack.push(sum);
-				} else {
-					stack.push(Double.parseDouble(str));
+					stack.push(nn);
+				}
+				else {
+					stack.push(Double.parseDouble(c));
 				}
 			}
-
-			System.out.println("#" + tc + " " + stack.pop());
+			double d = stack.pop();
+			int t = (int)d;
+			System.out.println("#" + tc + " " +t);
 		}
 	}
 }
