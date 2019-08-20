@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_7576_토마토 {
@@ -13,6 +15,7 @@ public class Main_7576_토마토 {
 	public static int[][] graph;
 	public static ArrayList<int[]> list;
 	public static int count;
+	public static Queue<ArrayList> queue;
 	
 	
 	public static void main(String[] args) throws Exception{
@@ -25,6 +28,8 @@ public class Main_7576_토마토 {
 		
 		graph = new int[N][M];
 		list = new ArrayList<>();
+		queue = new LinkedList<>();
+		
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < M; j++) {
