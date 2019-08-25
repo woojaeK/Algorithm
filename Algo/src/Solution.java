@@ -1,83 +1,76 @@
-import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
 public class Solution {
-    static int[][] graph;
-    static String[] stream;
-    static Stack<Integer> stack;
-    static int N;
-    public static void main(String[] args) throws Exception {
-    	System.setIn(new FileInputStream("res/input_D4_1232.txt"));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        int T = 10;
-        for(int tc = 1; tc<=T; tc++) {
-            N = Integer.parseInt(br.readLine());
-            stack = new Stack<>();
-            stream = new String[N+1];
-            graph = new int[N+1][N+1]; // from - > to
-            for(int i = 1; i <= N; i++) {
-                st = new StringTokenizer(br.readLine(), " ");
-                int nodeNum = Integer.parseInt(st.nextToken());
-                stream[nodeNum] = st.nextToken();
-                if(match(stream[nodeNum])){
-                    graph[nodeNum][Integer.parseInt(st.nextToken())]=1;
-                    graph[nodeNum][Integer.parseInt(st.nextToken())]=1;
-                }
-            }
-            dfs();
-            System.out.println("#" + tc + " " + stream[1]);
-        }
-    }
-    public static boolean match(String s) {
-        if("+-*/".contains(s)) return true;
-        else return false;
-    }
-    public static void dfs() {
-        stack.push(1);
-        stack.push(1);
-        while(!stack.isEmpty()) {
-            int[] calc = new int[2];
-            int count = 0;
-            int cur = stack.pop();
-            int size = stack.size();
-            if(match(stream[cur])) {//꺼낸게 연산자면 좌우 확인해봐야함
-                for(int i = N; i>=1;i--) {
-                    if(match(stream[i])&&graph[cur][i] == 1) {
-                        stack.push(i);
-                        stack.push(i);
-                    }
-                }
-                if(size == stack.size()) {
-                    for(int i = N; i >= 1; i--) {
-                        if(graph[cur][i] == 1) {
-                            calc[count++] = Integer.parseInt(stream[i]);
-                        }
-                    }
-                    stream[cur] = String.valueOf(calculate(calc,stream[cur]));
-                }
-            }
-        }
-    }
-    public static int calculate(int[] calc, String s) {
-        int result;
-        switch(s) {
-        case "+":
-            result = calc[0] + calc[1];
-            return result;
-        case "-":
-            result = calc[1] - calc[0];
-            return result;
-        case "/":
-            result = calc[1] / calc[0];
-            return result;
-        case "*":
-            result = calc[0] * calc[1];
-            return result;
-        default:
-            return 0;
-        }
-    }
+
+	public static class Edge {
+		int a;
+		int b;
+
+		Edge(int a, int b) {
+			this.a = a;
+			this.b = b;
+		}
+
+		@Override
+		public String toString() {
+			return "(" + a + "," + b + ")";
+		}
+	}
+
+	public static int getParent(int[] p, int x) {
+		if (p[x] == x)
+			return x;
+		else
+			return p[x] = getParent(p, p[x]); // 최종부모의 정보를 바꿔주면서...
+	}
+
+	public static void unionParent(int[] p, int a, int b) {
+		a = getParent(p, a);
+		b = getParent(p, b);
+		if (a < b)
+			p[b] = a;
+		else
+			p[a] = b;
+	}
+
+	public static int findParent(int[] p, int a, int b) {
+		a = getParent(p, a);
+		b = getParent(p, b);
+		if (a == b)
+			return 1;
+		else
+			return 0;
+	}
+
+	public static void main(String[] args) throws Exception {
+		Scanner sc = new Scanner(System.in);
+		int T = sc.nextInt();
+		for (int z = 0; z < T; z++) {
+			System.out.print("#" + (z + 1) + " ");
+			int n = sc.nextInt();
+			int m = sc.nextInt();
+
+			int[] p = new int[n];
+			for (int i = 0; i < n; i++)
+				p[i] = i; // make_set;
+
+			for (int i = 0; i < m; i++) {
+				int a = sc.nextInt();
+				int b = sc.nextInt();
+				int c = sc.nextInt();
+//System.out.println(a+" "+b+" "+c);
+				if (a == 0) {
+					unionParent(p, b - 1, c - 1);
+				} else {
+					System.out.print(findParent(p, b - 1, c - 1));
+				}
+			}
+			System.out.println();
+		}
+	}
+
 }
