@@ -1,83 +1,56 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
 public class Solution {
-    static int[][] graph;
-    static String[] stream;
-    static Stack<Integer> stack;
-    static int N;
-    public static void main(String[] args) throws Exception {
-    	System.setIn(new FileInputStream("res/input_D4_1232.txt"));
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        int T = 10;
-        for(int tc = 1; tc<=T; tc++) {
-            N = Integer.parseInt(br.readLine());
-            stack = new Stack<>();
-            stream = new String[N+1];
-            graph = new int[N+1][N+1]; // from - > to
-            for(int i = 1; i <= N; i++) {
-                st = new StringTokenizer(br.readLine(), " ");
-                int nodeNum = Integer.parseInt(st.nextToken());
-                stream[nodeNum] = st.nextToken();
-                if(match(stream[nodeNum])){
-                    graph[nodeNum][Integer.parseInt(st.nextToken())]=1;
-                    graph[nodeNum][Integer.parseInt(st.nextToken())]=1;
-                }
-            }
-            dfs();
-            System.out.println("#" + tc + " " + stream[1]);
-        }
-    }
-    public static boolean match(String s) {
-        if("+-*/".contains(s)) return true;
-        else return false;
-    }
-    public static void dfs() {
-        stack.push(1);
-        stack.push(1);
-        while(!stack.isEmpty()) {
-            int[] calc = new int[2];
-            int count = 0;
-            int cur = stack.pop();
-            int size = stack.size();
-            if(match(stream[cur])) {//꺼낸게 연산자면 좌우 확인해봐야함
-                for(int i = N; i>=1;i--) {
-                    if(match(stream[i])&&graph[cur][i] == 1) {
-                        stack.push(i);
-                        stack.push(i);
-                    }
-                }
-                if(size == stack.size()) {
-                    for(int i = N; i >= 1; i--) {
-                        if(graph[cur][i] == 1) {
-                            calc[count++] = Integer.parseInt(stream[i]);
-                        }
-                    }
-                    stream[cur] = String.valueOf(calculate(calc,stream[cur]));
-                }
-            }
-        }
-    }
-    public static int calculate(int[] calc, String s) {
-        int result;
-        switch(s) {
-        case "+":
-            result = calc[0] + calc[1];
-            return result;
-        case "-":
-            result = calc[1] - calc[0];
-            return result;
-        case "/":
-            result = calc[1] / calc[0];
-            return result;
-        case "*":
-            result = calc[0] * calc[1];
-            return result;
-        default:
-            return 0;
-        }
-    }
+	public static int[][] graph;
+	public static boolean[][] visit;
+	public static int dab;
+	public static int N, M;
+	public static Queue<int[]> queue;
+	public static ArrayList<Integer> list;
+	public static int[] di = { -1, 1, 0, 0 };
+	public static int[] dj = { 0, 0, -1, 1 };
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		M = sc.nextInt();
+		dab = 1;
+		graph = new int[N][M];
+		visit = new boolean[N][M];
+		for (int i = 0; i < N; i++) {
+			String S = sc.next();
+			for (int j = 0; j < M; j++) {
+				graph[i][j] = Character.getNumericValue(S.charAt(j));
+				if (graph[i][j] == 0)
+					visit[i][j] = true;
+			}
+		}
+		queue = new LinkedList<int[]>();
+		dfs(0, 0);
+		queue.clear();
+	}
+	public static void dfs(int i, int j) {
+		int[] aa = { i, j };
+		int distance[][] = new int[N][M];
+		queue.offer(aa);
+		distance[0][0]= 1;
+		while (!queue.isEmpty()) {
+			int[] curr = queue.poll();
+			for (int next = 0; next < di.length; next++) {
+				int dx = curr[0] + di[next];
+				int dy = curr[1] + dj[next];
+				if (dx >= 0 && dy >= 0 && dx < N && dy < M && !visit[dx][dy]) {
+					visit[dx][curr[1]] = true;
+					int[] bb = { dx, dy };
+					queue.offer(bb);
+					distance[dx][dy] = distance[curr[0]][curr[1]]+1;
+				}
+			}
+		}
+		System.out.println(distance[N-1][M-1]);
+	}
 }
