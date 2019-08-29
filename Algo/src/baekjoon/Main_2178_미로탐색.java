@@ -6,8 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Main_2178_미로탐색 {
-
+public class Main_2178_미로탐색{
 	public static int[][] graph;
 	public static boolean[][] visit;
 	public static int dab;
@@ -19,7 +18,6 @@ public class Main_2178_미로탐색 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-
 		N = sc.nextInt();
 		M = sc.nextInt();
 		dab = 1;
@@ -35,25 +33,26 @@ public class Main_2178_미로탐색 {
 		}
 		queue = new LinkedList<int[]>();
 		dfs(0, 0);
-		System.out.println(dab);
-	}
 
+	}
 	public static void dfs(int i, int j) {
-		visit[i][j] = true;
 		int[] aa = { i, j };
+		int distance[][] = new int[N][M];
 		queue.offer(aa);
+		distance[0][0]= 1;
 		while (!queue.isEmpty()) {
 			int[] curr = queue.poll();
-			visit[curr[0]][curr[1]] = true;
 			for (int next = 0; next < di.length; next++) {
 				int dx = curr[0] + di[next];
 				int dy = curr[1] + dj[next];
 				if (dx >= 0 && dy >= 0 && dx < N && dy < M && !visit[dx][dy]) {
-					dab++;
+					visit[dx][dy] = true;
 					int[] bb = { dx, dy };
 					queue.offer(bb);
+					distance[dx][dy] = distance[curr[0]][curr[1]]+1;
 				}
 			}
 		}
+		System.out.println(distance[N-1][M-1]);
 	}
 }
