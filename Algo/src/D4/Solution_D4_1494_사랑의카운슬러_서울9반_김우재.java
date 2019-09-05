@@ -7,12 +7,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Solution_D4_1494_서울9반_김우재 {
+public class Solution_D4_1494_사랑의카운슬러_서울9반_김우재 {
 
-	public static int N, r,cnt, a[], v[];
-	public static ArrayList<int[]> list;
-	public static ArrayList<int[]> clist;
+	public static Point[] points;
+	public static boolean[] visit;
+	public static long min;
+	public static int N;
 
+	public static void dfs(int )
 	public static void main(String[] args) throws Exception {
 		System.setIn(new FileInputStream("res/input_D4_1494.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

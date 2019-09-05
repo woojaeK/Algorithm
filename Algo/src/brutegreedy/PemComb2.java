@@ -1,10 +1,10 @@
-package stack2;
+package brutegreedy;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 //중복 없는 순열nPIr = 5P3 = 5*4*3 = 60 서로 다른 n개의 대상 가운데 r개를 선택해서 나열하는 경우의 수
-public class PemComb {
+public class PemComb2 {
 	public static int n, r, cnt, a[], v[] = { 1, 2, 3, 4, 5 };
 
 	public static void PemComb(int start, int count) {

@@ -10,7 +10,7 @@ public class Pem {
 		if(i==j) return;
 		int T = d[i]; d[i]= d[j]; d[j] = T;
  	}
-	
+	//
 	public static void perm(int count) {
 		if (count == n) {
 			cnt++;
@@ -23,7 +23,7 @@ public class Pem {
 			swap(count, i);
 		}
 	}
-
+//
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		n = d.length;// sc.nextInt();
