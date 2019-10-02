@@ -10,14 +10,14 @@ public class Main_14888_연산자끼워넣기 {
 	public static int n, r, v[], a[], dab;
 	public static ArrayList<Character> d;
 	public static char[] e;
-	public static int max = Integer.MAX_VALUE;
-	public static int min = Integer.MIN_VALUE;
+	public static int max;
+	public static int min;
 	
-
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-
+		max = Integer.MIN_VALUE;
+		min = Integer.MAX_VALUE;
 		int N = Integer.parseInt(br.readLine());
 
 		a = new int[N];
@@ -59,49 +59,33 @@ public class Main_14888_연산자끼워넣기 {
 		Pem(0);
 		System.out.println(max);
 		System.out.println(min);
-		
 	}
 
 	public static void Pem(int count) {
 		if (count == r) {
-			dab = 0;
-			switch (e[0]) {
-			case '+':
-				dab = a[0] +a[1];
-				break;
-			case '-':
-				dab = a[0] -a[1];
-				break;
-			case '*':
-				dab = a[0] *a[1];
-				break;
-			case '/':
-				dab = a[0] /a[1];
-				break;
-			}
-			for (int i = 2; i < e.length; i++) {
+			dab = a[0];
+			for (int i = 0; i < e.length; i++) {
 				switch (e[i]) {
 				case '+':
-					dab = dab + a[i];
+					dab = dab + a[i+1];
 					break;
 				case '-':
-					dab = dab - a[i];
+					dab = dab - a[i+1];
 					break;
 				case '*':
-					dab = dab * a[i];
+					dab = dab * a[i+1];
 					break;
 				case '/':
 					if(dab <0) {
 						dab = -dab;
-						dab = dab / a[i];
+						dab = dab / a[i+1];
 						dab = -dab;
 					}else {
-						dab = dab / a[i];
+						dab = dab / a[i+1];
 					}
 					break;
 				}
 			}
-			System.out.println(dab);
 			if(max < dab) max = dab;
 			if(min > dab) min = dab;
 			
