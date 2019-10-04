@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_정올_2543_서울_9반_김우재 {
+public class Main_정올_2543_타일채우기_서울9반_김우재 {
 	public static int T[][];
 	
 	public static void main(String[] args) throws Exception{
