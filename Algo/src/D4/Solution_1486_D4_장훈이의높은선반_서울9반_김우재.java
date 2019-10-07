@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class Solution_1486_D4_장훈이의높은선반_서울9반_김우재 {
 
 	public static int N, B, a[], min;
-	
+	public static boolean v[];
 	public static void main(String[] args) throws Exception{
 		System.setIn(new FileInputStream("res/1486_D4_input.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
@@ -21,6 +21,7 @@ public class Solution_1486_D4_장훈이의높은선반_서울9반_김우재 {
 			B = Integer.parseInt(st.nextToken());
 			min = Integer.MAX_VALUE;
 			a= new int[N];
+			v = new boolean[N];
 			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < N; i++) {
 				a[i] = Integer.parseInt(st.nextToken());
@@ -39,7 +40,9 @@ public class Solution_1486_D4_장훈이의높은선반_서울9반_김우재 {
 		}
 		
 		for (int j = i; j <N; j++) {
-				dfs(j+1, sum+a[j] ,cnt+1);
+				v[j] = true;
+				dfs(j, sum+a[j] ,cnt+1);
+				v[j] = false;
 		}
 	}
 }
