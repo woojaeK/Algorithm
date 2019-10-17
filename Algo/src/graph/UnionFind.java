@@ -19,7 +19,6 @@ public class UnionFind { //둘이 같은 집합인지를 확인할 때 사용하
 		
 		@Override
 		public int compareTo(Edge o) {
-			// TODO Auto-generated method stub
 			return Integer.compare(distance, o.distance);
 		}
 		
