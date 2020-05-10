@@ -2,14 +2,16 @@ package samsung;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class  Main_16234_인구이동 {
 
-	public static int N, L, R, map[][], map2[][], cnt;
-	public static boolean chk;
+	public static int N, L, R, map[][], map2[][];
+	public static boolean exit;
+	public static ArrayList<int[]> list;
 	public static int[] di = {-1, 0, 1, 0};
 	public static int[] dj = {0, 1, 0, -1};
 	
@@ -26,54 +28,74 @@ public class  Main_16234_인구이동 {
 		둘째줄 N개의 줄 
 		*/
 		
-		//BFS로 색칠하기 건물 갯수 구하기 처럼
-		//색칠한 건물 더해주기 색칠한 건물수 나누기  다시 집어 넣으면서 false 체크
-		//다시 돌리기 근데 바뀐게 없으면 끝내기 
-		
+		/*
+		BFS 탐색 -> 인구 이동 해야한다 -> 해야하는 구역 체크 -> 인구이동 인구 -> 아직 인구이동안한 구역 찾아서 반복
+				 -> 인구 이동 할 필요 가 없다 ->  -> 끝내기 
+		*/ 
 		st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
 		L = Integer.parseInt(st.nextToken());
 		R = Integer.parseInt(st.nextToken());
 		
 		map = new int[N][N];
-		map2 = new int[N][N];
+		
+		//입력
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
 				map[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		
-		solution();
-		System.out.println(cnt);
+		int dab = 0;
+		//solution start 
+		while(true){
+			//새로운 구역 인구 이동 표시
+			map2 = new int[N][N];
+			boolean a = false;
+
+				for(int i=0; i < N; i++){
+					for(int j=0; j < N; j++){
+						if(map2[i][j]==0 && BFS(i,j)){
+							a  = true;
+							
+						}			
+					}
+				}
+				if(a) dab++;
+				else break;  
+			}
+		System.out.println(dab);
 	}
 
-	private static void solution() {
-		BFS();
-	}
-
-	private static void BFS() {
+	private static boolean BFS(int sx, int sy) {
 		boolean visit[][] = new boolean[N][N];
 		Queue<int[]> q = new LinkedList<int[]>();
-		q.offer(new int[] {0,0});
-		cnt = 1;
+		list = new ArrayList<>();
+		list.add(new int[]{sx, sy});
+		q.offer(new int[] {sx, sy});
+
 		while(!q.isEmpty()) {
 			int[] curr = q.poll();
 			visit[curr[0]][curr[1]] = true;
+			
 			for (int i = 0; i < 4; i++) {
 				int x = curr[0] + di[i];
 				int y = curr[1] + dj[i];
+
 				if(x>=0 && y >=0 && x < N && y <N && !visit[x][y]) {
+					
 					int z = Math.abs(map[curr[0]][curr[1]] - map[x][y]);
+					
 					if(z >=L && x <=R) {
-						map2[x][y] = cnt;
-						map2[x][y] = cnt;
-						chk  = true;
+						list.add(new int[]{x, y});
+						exit = true;
 					}
 					q.offer(new int[] {x,y});
 				}
 			}
+
+
 		}
-		
+		return exit;
 	}
 }
