@@ -88,6 +88,8 @@ public class Main_16234_인구이동 {
 					}
 				}
 			}
+
+
 		}
 		
 		if (chk) {

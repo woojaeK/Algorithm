@@ -4,7 +4,6 @@ INDEX VERSION 1.131+C:\Users\multicampus\Desktop\algo\Algorithm\.metadata\.plugi
 2598812037.index
 4256083167.index
 3416486480.index
-2920634722.index
 2580451238.index
 788392666.index
 1593856350.index
