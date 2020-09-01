@@ -1,9 +1,10 @@
-import java.util.Arrays;
+package programmers;
 
-class test {
-	public static void main(String[] args) {
-		int[] answer = {};
-		int[] arr = { 4, 3, 2, 1 };
+class 제일작은수제거하기 {
+    public int[] solution(int[] arr) {
+        
+        int[] answer = {};
+
 		int k = 0;
 		int n = arr[k];
 		for (int i = 1; i < arr.length; i++) {
@@ -24,7 +25,7 @@ class test {
 			answer = new int[1];
 			answer[0] = (-1);
 		}
-		System.out.println(Arrays.toString(answer));
-		// return answer;
-	}
+		//System.out.println(Arrays.toString(answer));
+		return answer;
+    }
 }
