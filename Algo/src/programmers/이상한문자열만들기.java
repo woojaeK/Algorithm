@@ -2,7 +2,7 @@ package programmers;
 
 import java.util.*;
 
-class Solution {
+class 이상한문자열만들기 {
     public String solution(String s) {
         String answer = "";
 		String[] word = s.split(" ", -1);
