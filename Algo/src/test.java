@@ -2,6 +2,8 @@ import java.util.Arrays;
 
 class test {
 	public static void main(String[] args) {
+		
+		int q1 =1, q2=3;
 		int[] answer = {};
 		int[] arr = { 4, 3, 2, 1 };
 		int k = 0;
