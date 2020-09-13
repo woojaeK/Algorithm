@@ -13,7 +13,7 @@ public class PemComb2 {
 			System.out.println(Arrays.toString(a));
 			return;
 		}
-		for (int i = 1; i < n; i++) {//start를 쓰면 조합 start 안쓰면 순열for (int i = start; i < n; i++) 
+		for (int i = start; i < n; i++) {//start를 쓰면 조합 start 안쓰면 순열for (int i = start; i < n; i++) 
 			if (v[i] == 0) {
 				v[i] = 1;
 				a[count] = i;
@@ -26,7 +26,7 @@ public class PemComb2 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		n = 5;// sc.nextInt();
-		r = 3;// sc.nextInt();
+		r = 2;// sc.nextInt();
 		a = new int[r];
 		v = new int[n];
 		PemComb(0, 0);
